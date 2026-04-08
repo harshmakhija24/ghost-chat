@@ -10,6 +10,7 @@ const messagesList = document.getElementById('messages-list');
 const messageForm = document.getElementById('message-form');
 const messageInput = document.getElementById('message-input');
 const connStatus = document.getElementById('conn-status');
+const copyRoomBtn = document.getElementById('copy-room-btn');
 
 let socket;
 let currentRoom = '';
@@ -29,6 +30,14 @@ async function init() {
     myId = socket.id;
     connStatus.classList.add('connected');
     addSystemMessage("Connected to secure server.");
+  });
+
+  copyRoomBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(currentRoom).then(() => {
+        const originalTitle = copyRoomBtn.title;
+        copyRoomBtn.title = "Copied!";
+        setTimeout(() => copyRoomBtn.title = originalTitle, 2000);
+    });
   });
 
   socket.on('disconnect', () => {

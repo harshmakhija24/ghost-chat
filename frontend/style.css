@@ -43,9 +43,8 @@ body {
 }
 
 .shape1 {
-  width: 40px;
-  height: 400px; /* changed from 400 to match width roughly */
   width: 400px;
+  height: 400px;
   background: radial-gradient(circle, rgba(88,166,255,0.4) 0%, rgba(13,17,23,0) 70%);
   top: -100px;
   left: -100px;
@@ -244,6 +243,24 @@ input[type="text"]:focus {
 .icon-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   color: var(--danger-color);
+}
+
+.icon-btn-small {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn-small:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent-color);
 }
 
 .messages-container {

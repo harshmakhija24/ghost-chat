@@ -49,9 +49,17 @@ io.on('connection', (socket) => {
     socket.to(data.roomId).emit('receive_message', data);
   });
 
+  socket.on('disconnecting', () => {
+    // Notify rooms that the user is leaving before they are actually gone
+    socket.rooms.forEach(room => {
+      if (room !== socket.id) {
+        socket.to(room).emit('user_disconnected', socket.id);
+      }
+    });
+  });
+
   socket.on('disconnect', () => {
     console.log('User disconnected:', socket.id);
-    io.emit('user_disconnected', socket.id); // Broadcasting globally for simplicity, or we could track rooms
   });
 });
 
